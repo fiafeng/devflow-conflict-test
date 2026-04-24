@@ -1,9 +1,17 @@
 <template>
-  <div class="login-container">
-    <h1>Login</h1>
-    <input type="text" v-model="username" placeholder="Username" />
-    <input type="password" v-model="password" placeholder="Password" />
-    <button @click="login">Login</button>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h2>Sign In</h2>
+      <el-form :model="form" @submit.native.prevent="handleLogin">
+        <el-form-item label="Username">
+          <el-input v-model="form.username" />
+        </el-form-item>
+        <el-form-item label="Password">
+          <el-input v-model="form.password" type="password" />
+        </el-form-item>
+        <el-button type="primary" native-type="submit">Sign In</el-button>
+      </el-form>
+    </div>
   </div>
 </template>
 
@@ -11,11 +19,13 @@
 export default {
   name: 'LoginPage',
   data() {
-    return { username: '', password: '' }
+    return {
+      form: { username: '', password: '' }
+    }
   },
   methods: {
-    login() {
-      // TODO: implement login
+    handleLogin() {
+      this.$router.push('/dashboard')
     }
   }
 }
